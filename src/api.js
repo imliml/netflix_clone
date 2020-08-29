@@ -32,7 +32,7 @@ export const movieApi = {
 };
 
 export const tvApi = {
-  tody: () => getAnything("/tv/airing_today"),
+  today: () => getAnything("/tv/airing_today"),
   popular: () => getAnything("/tv/popular"),
   topRated: () => getAnything("/tv/top_rated"),
   thisWeek: () => getAnything("/tv/on_the_air"),
