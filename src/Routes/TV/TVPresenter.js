@@ -31,6 +31,7 @@ const TVPresenter = ({
               title={tv.original_name}
               rating={tv.vote_average}
               year={tv.first_air_date}
+              isMovie={false}
             />
           ))}
         </Section>
@@ -45,6 +46,7 @@ const TVPresenter = ({
               title={tv.original_name}
               rating={tv.vote_average}
               year={tv.first_air_date}
+              isMovie={false}
             />
           ))}
         </Section>
@@ -59,6 +61,7 @@ const TVPresenter = ({
               title={tv.original_name}
               rating={tv.vote_average}
               year={tv.first_air_date}
+              isMovie={false}
             />
           ))}
         </Section>
@@ -73,6 +76,7 @@ const TVPresenter = ({
               title={tv.original_name}
               rating={tv.vote_average}
               year={tv.first_air_date}
+              isMovie={false}
             />
           ))}
         </Section>
