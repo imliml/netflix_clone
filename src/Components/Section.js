@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-bottom: 40px;
+  margin-left: 30px;
+`;
 
 const Title = styled.span`
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 600;
 `;
 

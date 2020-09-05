@@ -6,7 +6,7 @@ const Header = styled.header`
   color: white;
   position: fixed;
   top: 0;
-  left: 20px;
+  left: 0px;
   width: 100%;
   height: 50px;
   display: flex;
@@ -18,6 +18,7 @@ const Header = styled.header`
 
 const List = styled.ul`
   display: flex;
+  margin-left: 30px;
 `;
 
 const Item = styled.li`
