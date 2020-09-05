@@ -3,49 +3,41 @@ import { movieApi, tvApi } from "../../api";
 import SearchPresenter from "./SearchPresenter";
 
 const SearchContainer = () => {
+  const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState({
     movies: [],
     shows: [],
-    searchKeyword: null,
     movieError: null,
     showsError: null,
-    loading: false,
   });
 
-  const onChange = (text) => setKeyword(text);
+  const onChange = (event) => setKeyword(event.target.value);
 
-  const updateTerm = (text) => {
-    const {
-      target: { value },
-    } = text;
-    this.setKeyword({
-      keyword: value,
-    });
-  };
-
-  const onSubmit = async () => {
-    setResults({ loading: true });
+  const search = async () => {
     if (keyword === "") {
       return;
     }
-    // api 태움
+
+    setLoading(true);
+
     const [movies, movieError] = await movieApi.search(keyword);
     const [shows, showsError] = await tvApi.search(keyword);
+
     setResults({
       movies,
       shows,
       movieError,
       showsError,
-      loading: false,
     });
+    setLoading(false);
   };
 
   return (
     <SearchPresenter
       {...results}
-      onChange={updateTerm}
-      onSubmit={onSubmit}
+      onChange={onChange}
+      onSubmit={search}
       keyword={keyword}
     />
   );

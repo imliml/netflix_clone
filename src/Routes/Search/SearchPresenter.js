@@ -1,6 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "../../Components/Loader";
+import Section from "../../Components/Section";
+import Poster from "../../Components/Poster";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -24,7 +26,6 @@ const SearchPresenter = ({
   onChange,
   onSubmit,
   loading,
-  error,
 }) => {
   return (
     <Container>
@@ -35,18 +36,43 @@ const SearchPresenter = ({
           onChange={onChange}
         />
       </Form>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {movies && movies.length > 0 && (
+            <Section title="Movie Results">
+              {movies.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
+          )}
+          {shows && shows.length > 0 && (
+            <Section title="Shows Results">
+              {shows.map((show) => (
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageUrl={show.poster_path}
+                  title={show.original_name}
+                  rating={show.vote_average}
+                  year={show.first_air_date}
+                />
+              ))}
+            </Section>
+          )}
+        </>
+      )}
     </Container>
   );
-};
-
-SearchPresenter.propTypes = {
-  movies: PropTypes.array,
-  shows: PropTypes.array,
-  keyword: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string,
 };
 
 export default SearchPresenter;
