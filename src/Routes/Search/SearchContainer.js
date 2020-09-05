@@ -39,6 +39,7 @@ const SearchContainer = () => {
       onChange={onChange}
       onSubmit={search}
       keyword={keyword}
+      loading={loading}
     />
   );
 };
