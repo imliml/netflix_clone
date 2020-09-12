@@ -73,6 +73,7 @@ const DetailPresenter = ({ result, loading, error }) =>
       <Helmet>
         <title>Loading | Netflix Clone</title>
       </Helmet>
+      <Loader />
     </>
   ) : (
     <Container>
