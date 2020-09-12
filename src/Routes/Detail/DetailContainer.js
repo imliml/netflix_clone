@@ -30,7 +30,13 @@ const DetailContainer = ({ pathname }) => {
     getData();
   }, [id]);
 
-  return <DetailPresenter result={item.result} />;
+  return (
+    <DetailPresenter
+      result={item.result}
+      loading={item.loading}
+      error={item.resultError}
+    />
+  );
 };
 
 export default DetailContainer;
