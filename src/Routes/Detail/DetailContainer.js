@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { movieApi, tvApi } from "../../api";
+import DetailPresenter from "./DetailPresenter";
 
-const DetailContainer = () => {
-  //   const {
-  //     location: { pathname },
-  //   } = props;
+const DetailContainer = ({ pathname }) => {
+  let { id } = useParams();
+  let location = useLocation();
 
-  const [detail, setDetail] = useState({
-    loading: true,
-    result: null,
+  const [item, setItem] = useState({
+    result: {},
     resultError: null,
-    // isMovie: pathname.includes("/movie/"),
+    loading: true,
   });
 
   const getData = async () => {
-    // // // const [getDetail, getDetailError] = isMovie
-    // // //   ? await movieApi.movie(id)
-    // // //   : await tvApi.show(id);
-    // // setDetail({
-    // //   loading: false,
-    // //   result: getDetail,
-    // //   resultError: getDetailError,
-    // });
+    const [result, resultError] = location.pathname.includes("/movie/")
+      ? await movieApi.movie(id)
+      : await tvApi.show(id);
+    setItem({
+      result,
+      resultError,
+      loading: false,
+    });
+    console.log("idididid", location.pathname);
+    console.log("isMovie", result);
   };
 
-  return (
-    <div>
-      <h1>tesxt</h1>
-    </div>
-  );
+  useEffect(() => {
+    getData();
+  }, [id]);
+
+  return <DetailPresenter result={item.result} />;
 };
 
 export default DetailContainer;
