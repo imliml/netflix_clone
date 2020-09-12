@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Section from "../../Components/Section";
 import Poster from "../../Components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -29,6 +30,9 @@ const SearchPresenter = ({
 }) => {
   return (
     <Container>
+      <Helmet>
+        <title>Search | Netflix Clone</title>
+      </Helmet>
       <Form onSubmit={onSubmit}>
         <Input
           placeholder="Search Movies or TV shows..."
