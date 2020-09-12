@@ -22,13 +22,11 @@ const DetailContainer = ({ pathname }) => {
       resultError,
       loading: false,
     });
-    console.log("idididid", location.pathname);
-    console.log("isMovie", result);
   };
 
   useEffect(() => {
     getData();
-  }, [id]);
+  });
 
   return (
     <DetailPresenter
