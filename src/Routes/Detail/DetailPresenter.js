@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Helmet from "react-helmet";
+import Section from "../../Components/Section";
+import Poster from "../../Components/Poster";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -67,7 +69,11 @@ const Overview = styled.p`
   width: 50%;
 `;
 
-const DetailPresenter = ({ result, loading, error }) =>
+const SContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const DetailPresenter = ({ result, loading, similar, error }) =>
   loading ? (
     <>
       <Helmet>
@@ -121,6 +127,23 @@ const DetailPresenter = ({ result, loading, error }) =>
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+          <SContainer>
+            <Section title="Similar Movie">
+              {similar &&
+                similar.length > 0 &&
+                similar.map((item) => (
+                  <Poster
+                    key={item.id}
+                    id={item.id}
+                    imageUrl={item.poster_path}
+                    title={item.original_title}
+                    rating={item.vote_average}
+                    year={item.release_date}
+                    isMovie={true}
+                  />
+                ))}
+            </Section>
+          </SContainer>
         </Data>
       </Content>
     </Container>

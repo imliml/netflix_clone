@@ -10,6 +10,8 @@ const DetailContainer = ({ pathname }) => {
   const [item, setItem] = useState({
     result: {},
     resultError: null,
+    similar: {},
+    similarError: null,
     loading: true,
   });
 
@@ -17,11 +19,17 @@ const DetailContainer = ({ pathname }) => {
     const [result, resultError] = location.pathname.includes("/movie/")
       ? await movieApi.movie(id)
       : await tvApi.show(id);
+    const [similar, similarError] = location.pathname.includes("/movie/")
+      ? await movieApi.similar(id)
+      : await tvApi.similar(id);
     setItem({
       result,
       resultError,
+      similar,
+      similarError,
       loading: false,
     });
+    console.log("+++++++++++++++++++++++", similar);
   };
 
   useEffect(() => {
@@ -33,6 +41,7 @@ const DetailContainer = ({ pathname }) => {
       result={item.result}
       loading={item.loading}
       error={item.resultError}
+      similar={item.similar}
     />
   );
 };
